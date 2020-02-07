@@ -27,6 +27,16 @@ const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 
 const postcssNormalize = require('postcss-normalize');
 
+const aggregateTranslations = require('terra-aggregate-translations');
+
+const aggregateOptions = {
+  baseDir: __dirname,
+  locales: ['en', 'en-US'],
+  format: 'es6',
+};
+
+aggregateTranslations(aggregateOptions);
+
 const appPackageJson = require(paths.appPackageJson);
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
