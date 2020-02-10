@@ -1,8 +1,18 @@
-.app {
-  display: flex;
-  justify-content: space-between;
-  padding: 2em;
-  .card {
-    width: 31.5%;
+:local {
+  .app {
+    padding-top: 0;
+    h1 {
+      padding: 1rem;
+      font-size: 1.285714286rem;
+      font-weight: 500;
+      background-color: #cbe9fa;
+    }
+  }
+  .app-content {
+    @media screen and (min-width: 48em) {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 1rem;
+    }
   }
 }

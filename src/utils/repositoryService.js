@@ -20,19 +20,14 @@ const getOctoKitInstanceForInternalGithub = () => (
 
 const intersectionOfSets = (set1, set2) => new Set([...set1].filter(x => set2.has(x)));
 
-const getUsers = (areInternalRepositories, assignedUsers) => {
+const getUser = (areInternalRepositories, username) => {
   let octokitInstance;
   if (areInternalRepositories) {
     octokitInstance = getOctoKitInstanceForInternalGithub();
   } else {
     octokitInstance = getOctoKitInstanceForExternalGithub();
   }
-  // get avatars and info for all users in the array.
-  return Promise.all(assignedUsers.map((username) => {
-    const userInfo = octokitInstance.users.getByUsername({username});
-    // console.log(userInfo.data);
-    return userInfo;
-  }));
+  return octokitInstance.users.getByUsername({username});
 }
 
 const getBlockedIssuesAndPullRequests = (areInternalRepositories, repositories, blockingLabels, assignedUsers) => {
@@ -118,7 +113,7 @@ const getRepositoryTree = (owner, repo) => {
 };
 
 export {
-  getUsers,
+  getUser,
   getBlockedIssuesAndPullRequests,
   getRepositoryTree,
 };

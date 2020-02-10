@@ -1,0 +1,31 @@
+:local {
+  .card {
+    margin: 0 1rem 1rem;
+    @media screen and (min-width: 48em) {
+      flex: 1;
+      margin: 0 1rem;
+      &:nth-child(2n){
+        margin: 0;
+      }
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 1rem;
+      background-color: #f4f4f4;
+      border-bottom: 1px solid #c8cacb;
+    }
+    .github-avatar {
+      // width: 4.5rem;
+      // height: 4.5rem;
+      // position: absolute;
+    }
+    .user-name {
+      // width: 100%;
+      // text-align: right;
+      margin-left: 0.5rem;
+      font-size: 1.142857143rem;
+    }
+  }
+}
