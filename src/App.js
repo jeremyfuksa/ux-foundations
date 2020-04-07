@@ -1,7 +1,7 @@
 import getReactWithCX from 'react-cx';
 import {
   getUser,
-  getBlockedIssuesAndPullRequests
+  getBlocks
 } from './utils/repositoryService';
 import GithubCard from './components/github-card/GithubCard';
 import styles from './App.module.scss';
@@ -46,7 +46,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: {},
+      userName: '',
+      userInitials: '',
+      userImage: '',
+      issues: [],
       cards: []
     };
   }
@@ -60,19 +63,29 @@ class App extends React.Component {
     for (let i = 0; i < users.length; i++) {
       getUser(false, users[i])
       .then((user) => {
-        console.log(user.data);
+        this.setState({
+          userName: user.data.name,
+          userInitials: this.makeInitials(user.data.name),
+          userImage: user.data.avatar_url
+        });
         let cardArray = this.state.cards;
         cardArray.push(
           <GithubCard
             key={i}
-            name={user.data.name}
-            initials={this.makeInitials(user.data.name)}
-            image={user.data.avatar_url}
+            name={this.state.userName}
+            initials={this.state.userInitials}
+            image={this.state.userImage}
+            issues={this.state.issues}
           />
         );
         this.setState({
           cards: cardArray
         });
+      });
+
+      const userBlocks = getBlocks(false, repos, labels, users[i]);
+      this.setState({
+
       });
     }
   }
@@ -86,7 +99,7 @@ class App extends React.Component {
   render () {
     return (
       <div cx='app'>
-        <h1>UX Foundations Dashboard</h1>
+        <h1>UX Foundations Terra Dashboard</h1>
         <div cx='app-content'>{this.state.cards}</div>
       </div>
     );

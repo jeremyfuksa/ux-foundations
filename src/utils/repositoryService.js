@@ -30,7 +30,7 @@ const getUser = (areInternalRepositories, username) => {
   return octokitInstance.users.getByUsername({username});
 }
 
-const getBlockedIssuesAndPullRequests = (areInternalRepositories, repositories, blockingLabels, assignedUsers) => {
+const getBlocks = (areInternalRepositories, repositories, blockingLabels, username) => {
   let octokitInstance;
   if (areInternalRepositories) {
     octokitInstance = getOctoKitInstanceForInternalGithub();
@@ -40,13 +40,17 @@ const getBlockedIssuesAndPullRequests = (areInternalRepositories, repositories, 
 
   return Promise.all(repositories.map((repositoryInfo) => {
     const [owner, repository] = repositoryInfo.split('/');
+    // Get options for pagination
     const options = octokitInstance.issues.listForRepo.endpoint.merge({
       owner,
       repo: repository,
       state: 'open',
-      per_page: 100,
+      assignee: username,
+      per_page: 100
     });
-    return octokitInstance.paginate(options).then(response => (
+    // Gets the open issues that are assigned
+    return octokitInstance.paginate(options)
+    .then((response) => (
       response.map((issue) => {
         const updatedIssue = issue;
         updatedIssue.owner = owner;
@@ -54,24 +58,21 @@ const getBlockedIssuesAndPullRequests = (areInternalRepositories, repositories, 
         return updatedIssue;
       })
     ));
-  })).then((allResponses) => {
+  }))
+  .then((allResponses) => {
     const blockedIssues = [];
     flatten(allResponses, 2).forEach((issue) => {
+      console.log(issue);
       const labelNames = issue.labels.map(label => label.name);
       const relevantLabels = intersectionOfSets(new Set(labelNames), new Set(blockingLabels));
-      const userNames = issue.assignees.map(assignee => assignee.login);
-      const relevantUsers = intersectionOfSets(new Set(userNames), new Set(assignedUsers));
-      if (relevantLabels.size > 0 && relevantUsers.size > 0) {
+      if (relevantLabels.size > 0) {
         const labelsArray = Array.from(relevantLabels);
-        const usersArray = Array.from(relevantUsers);
         if (labelNames.includes('bug')) {
           labelsArray.push('bug');
         }
         if (labelNames.includes('bug-fix')) {
           labelsArray.push('bug-fix');
         }
-        // console.log(issue);
-        // need to add assignee and avatar_url to the object.
         blockedIssues.push({
           number: issue.number,
           repo: issue.repo,
@@ -79,12 +80,13 @@ const getBlockedIssuesAndPullRequests = (areInternalRepositories, repositories, 
           title: issue.title,
           htmlUrl: issue.html_url,
           labels: labelsArray,
-          users: usersArray,
         });
       }
     });
+    console.log(blockedIssues);
     return blockedIssues;
-  }).then(blockedIssues => (
+  })
+  .then(blockedIssues => (
     Promise.all(blockedIssues.map((blockedIssue) => {
       const updatedBlockedIssue = blockedIssue;
       const options = octokitInstance.issues.listEvents.endpoint.merge({
@@ -102,18 +104,7 @@ const getBlockedIssuesAndPullRequests = (areInternalRepositories, repositories, 
   ));
 };
 
-const getRepositoryTree = (owner, repo) => {
-  const octokitInstance = getOctoKitInstanceForExternalGithub();
-  return octokitInstance.git.getTree({
-    owner,
-    repo,
-    tree_sha: 'master',
-    recursive: 1,
-  });
-};
-
 export {
   getUser,
-  getBlockedIssuesAndPullRequests,
-  getRepositoryTree,
+  getBlocks
 };
