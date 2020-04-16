@@ -62,7 +62,7 @@ const getBlocks = (areInternalRepositories, repositories, blockingLabels, userna
   .then((allResponses) => {
     const blockedIssues = [];
     flatten(allResponses, 2).forEach((issue) => {
-      console.log(issue);
+      // console.log(issue);
       const labelNames = issue.labels.map(label => label.name);
       const relevantLabels = intersectionOfSets(new Set(labelNames), new Set(blockingLabels));
       if (relevantLabels.size > 0) {
@@ -83,7 +83,6 @@ const getBlocks = (areInternalRepositories, repositories, blockingLabels, userna
         });
       }
     });
-    console.log(blockedIssues);
     return blockedIssues;
   })
   .then(blockedIssues => (
@@ -104,7 +103,14 @@ const getBlocks = (areInternalRepositories, repositories, blockingLabels, userna
   ));
 };
 
+const makeInitials = (name) => {
+  let initials = name.match(/\b\w/g) || [];
+  initials = ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
+  return initials;
+}
+
 export {
   getUser,
-  getBlocks
+  getBlocks,
+  makeInitials
 };

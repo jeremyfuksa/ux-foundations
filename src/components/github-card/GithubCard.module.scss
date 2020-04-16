@@ -1,13 +1,16 @@
 :local {
   .card {
-    margin: 0 1rem 1rem;
+    margin: 1rem 0;
     @media screen and (min-width: 48em) {
-      flex: 1;
-      margin: 0 1rem;
-      &:nth-child(2n){
-        margin: 0;
-      }
+      // flex: 1;
+      width: calc(33.3% - 0.75rem);
+      margin: 1rem 0 0;
     }
+
+    .block-list {
+      margin-bottom: 1rem;
+    }
+
     .card-header {
       display: flex;
       align-items: center;
@@ -16,14 +19,50 @@
       background-color: #f4f4f4;
       border-bottom: 1px solid #c8cacb;
     }
-    .github-avatar {
-      // width: 4.5rem;
-      // height: 4.5rem;
-      // position: absolute;
+
+    .yellow-avatar {
+      background-color: #fff9e5;
+      &::after {
+        box-shadow: inset 0 0 0 2px #fff4cc;
+      }
     }
+    .green-avatar {
+      background-color: #e9f5df;
+      &::after {
+        box-shadow: inset 0 0 0 2px #d1ecbf;
+      }
+    }
+    .red-avatar {
+      background-color: #ffebeb;
+      &::after {
+        box-shadow: inset 0 0 0 2px #ffd1d0;
+      }
+    }
+
+    .issue-actions {
+      display: flex;
+      justify-content: space-between;
+      .issue-assign {
+        display: block;
+        button { padding: 0.25rem 0.5rem; }
+      }
+      .issue-link { width: 70%; }
+    }
+
+    .issue-details {
+      margin-bottom: 0.25rem;
+      padding-bottom: 0.25rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.857142857rem;
+      border-bottom: 1px solid #c8cacb;
+    }
+
+    .issue-item {
+      padding: 0.5rem 1.25rem;
+    }
+
     .user-name {
-      // width: 100%;
-      // text-align: right;
       margin-left: 0.5rem;
       font-size: 1.142857143rem;
     }

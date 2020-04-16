@@ -2,6 +2,7 @@
   .app {
     padding-top: 0;
     h1 {
+      margin: 0 auto;
       padding: 1rem;
       font-size: 1.285714286rem;
       font-weight: 500;
@@ -9,8 +10,10 @@
     }
   }
   .app-content {
+    padding: 0 1rem 2rem;
     @media screen and (min-width: 48em) {
       display: flex;
+      flex-flow: row wrap;
       justify-content: space-between;
     }
   }
