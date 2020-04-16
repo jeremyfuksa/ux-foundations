@@ -70,6 +70,7 @@
     "terra-dropdown-button": "^1.11.0",
     "terra-html-table": "^1.2.0",
     "terra-hyperlink": "^2.30.0",
+    "terra-i18n": "^4.26.0",
     "terra-list": "^4.27.0",
     "terra-overlay": "^3.43.0",
     "terra-paginator": "^2.43.0",
