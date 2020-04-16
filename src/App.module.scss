@@ -2,11 +2,18 @@
   .app {
     padding-top: 0;
     h1 {
+      display: flex;
+      align-items: center;
       margin: 0 auto;
       padding: 1rem;
       font-size: 1.285714286rem;
       font-weight: 500;
       background-color: #cbe9fa;
+    }
+    .ux-logo {
+      width: 36px;
+      height: auto;
+      margin-right: 0.5rem;
     }
   }
   .app-content {

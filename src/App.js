@@ -151,7 +151,7 @@ class App extends React.Component {
     }
     return (
       <div cx='app'>
-        <h1>UX Foundations Terra Dashboard</h1>
+        <h1><img cx='ux-logo' src='UserExperience.png'></img><span>UX Foundations Terra Dashboard</span></h1>
         <OverlayContainer cx='container'>
           <LoadingOverlay isOpen={this.state.isLoading} isAnimated isRelativeToContainer />
           <div cx='app-content'>
