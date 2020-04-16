@@ -2,7 +2,9 @@
   "name": "ux-foundations",
   "version": "0.3.0",
   "private": true,
-  "engines" : { "node" : "<11.*" },
+  "engines": {
+    "node": "<11.*"
+  },
   "dependencies": {
     "@babel/core": "7.8.4",
     "@octokit/rest": "^16.43.1",
@@ -87,9 +89,9 @@
   },
   "scripts": {
     "start": "npm run aggregate-translations && node scripts/start.js",
-    "build": "node scripts/build.js",
+    "build": "npm run aggregate-translations && node scripts/build.js",
     "test": "node scripts/test.js",
-    "aggregate-translations": "tt-aggregate-translations -b ./ -d ./src/**/translations -d ./translations -o ./node_modules/terra-i18n/node_modules -f es6",
+    "aggregate-translations": "tt-aggregate-translations -b ./ -d ./src/**/translations -d ./translations  -o ./node_modules/terra-i18n/node_modules -f es6",
     "deploy": "git push heroku master"
   },
   "eslintConfig": {
