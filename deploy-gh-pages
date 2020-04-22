@@ -1,0 +1,7 @@
+#!/bin/bash
+rm -r docs
+yarn build
+cp -R build docs
+git add *
+git commit -m "GH Pages Build"
+git push origin master
