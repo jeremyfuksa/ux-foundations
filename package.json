@@ -95,7 +95,7 @@
     "test": "node scripts/test.js",
     "aggregate-translations": "tt-aggregate-translations -b ./ -d ./src/**/translations -d ./translations  -o ./node_modules/terra-i18n/node_modules -f es6",
     "deploy": "git push heroku master",
-    "gh-pages": "rm -r docs && yarn build && cp -R build docs"
+    "gh-pages": "rm -r docs && yarn build && cp -R build docs && git add * & git commit -m 'GH Pages Build' && git push origin master"
   },
   "eslintConfig": {
     "extends": "react-app"
