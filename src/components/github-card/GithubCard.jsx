@@ -24,7 +24,7 @@ const GithubCard = ({
   icon,
   iconClass,
   image,
-  reviews,
+  reviews, 
   blocks,
   inputs
 }) => {
@@ -188,6 +188,7 @@ const GithubCard = ({
           <List cx='block-list'>
             {list}
           </List>
+          <footer><Paginator /></footer>
         </Card.Body>
       </Card>
     );

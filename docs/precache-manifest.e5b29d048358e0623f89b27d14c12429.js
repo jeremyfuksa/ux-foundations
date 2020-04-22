@@ -1,14 +1,14 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2e962de0784e3bb254a4e78ecede6ee3",
+    "revision": "c02189e010460dd94207d32f2409b2b2",
     "url": "/ux-foundations/index.html"
   },
   {
-    "revision": "b7d8f37787c11eac3d06",
+    "revision": "8349a2a2333af9208b4a",
     "url": "/ux-foundations/static/css/21.3c2f92dd.chunk.css"
   },
   {
-    "revision": "c1e0c5d7cbe95b4580a2",
+    "revision": "2ce649deee5abc5d08cf",
     "url": "/ux-foundations/static/css/main.f7c7e197.chunk.css"
   },
   {
@@ -20,12 +20,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ux-foundations/static/js/1.2120963f.chunk.js"
   },
   {
-    "revision": "b7d8f37787c11eac3d06",
-    "url": "/ux-foundations/static/js/21.e53d68da.chunk.js"
+    "revision": "8349a2a2333af9208b4a",
+    "url": "/ux-foundations/static/js/21.a3b25611.chunk.js"
   },
   {
     "revision": "ebe718d5010ec27902616a14a0528568",
-    "url": "/ux-foundations/static/js/21.e53d68da.chunk.js.LICENSE.txt"
+    "url": "/ux-foundations/static/js/21.a3b25611.chunk.js.LICENSE.txt"
   },
   {
     "revision": "ae8c50712cad55c8ce9b",
@@ -140,8 +140,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ux-foundations/static/js/fr-translations.9b687b85.chunk.js"
   },
   {
-    "revision": "c1e0c5d7cbe95b4580a2",
-    "url": "/ux-foundations/static/js/main.e35f5ad8.chunk.js"
+    "revision": "2ce649deee5abc5d08cf",
+    "url": "/ux-foundations/static/js/main.f80727fa.chunk.js"
   },
   {
     "revision": "5e459fb16760bd486a69",
