@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import {Octokit} from '@octokit/rest';
 import flatten from 'lodash.flattendeep';
 
@@ -5,7 +6,7 @@ const getOctoKitInstanceForExternalGithub = () => (
   Octokit({
     timeout: 0, // 0 means no request timeout
     userAgent: 'octokit/rest.js v16.27.0',
-    auth: '931ccca7e8c21f87914460449e3b574f62039c6d',
+    auth: process.env.REACT_APP_EXT_GITHUB,
   })
 );
 
@@ -14,7 +15,7 @@ const getOctoKitInstanceForInternalGithub = () => (
     timeout: 0, // 0 means no request timeout
     userAgent: 'octokit/rest.js v16.27.0',
     baseUrl: 'https://github.cerner.com/api/v3',
-    auth: '1a10c2cc57e848533ddd589ef7eb5249d3e3c4d6',
+    auth: process.env.REACT_APP_INT_GITHUB,
   })
 );
 
@@ -39,15 +40,26 @@ const getBlocks = (areInternalRepositories, repositories, blockingLabels, userna
   }
 
   return Promise.all(repositories.map((repositoryInfo) => {
+    let endpointOptions;
     const [owner, repository] = repositoryInfo.split('/');
+    if (!Array.isArray(username)) {
+      endpointOptions = {
+        owner,
+        repo: repository,
+        state: 'open',
+        assignee: username,
+        per_page: 100
+      };
+    } else {
+      endpointOptions = {
+        owner,
+        repo: repository,
+        state: 'open',
+        per_page: 500
+      };
+    }
     // Get options for pagination
-    const options = octokitInstance.issues.listForRepo.endpoint.merge({
-      owner,
-      repo: repository,
-      state: 'open',
-      assignee: username,
-      per_page: 100
-    });
+    const options = octokitInstance.issues.listForRepo.endpoint.merge(endpointOptions);
     // Gets the open issues that are assigned
     return octokitInstance.paginate(options)
     .then((response) => (
@@ -62,7 +74,6 @@ const getBlocks = (areInternalRepositories, repositories, blockingLabels, userna
   .then((allResponses) => {
     const blockedIssues = [];
     flatten(allResponses, 2).forEach((issue) => {
-      // console.log(issue);
       const labelNames = issue.labels.map(label => label.name);
       const relevantLabels = intersectionOfSets(new Set(labelNames), new Set(blockingLabels));
       if (relevantLabels.size > 0) {
@@ -73,14 +84,30 @@ const getBlocks = (areInternalRepositories, repositories, blockingLabels, userna
         if (labelNames.includes('bug-fix')) {
           labelsArray.push('bug-fix');
         }
-        blockedIssues.push({
-          number: issue.number,
-          repo: issue.repo,
-          owner: issue.owner,
-          title: issue.title,
-          htmlUrl: issue.html_url,
-          labels: labelsArray,
-        });
+        if (!Array.isArray(username)) {
+          blockedIssues.push({
+            number: issue.number,
+            repo: issue.repo,
+            owner: issue.owner,
+            title: issue.title,
+            htmlUrl: issue.html_url,
+            labels: labelsArray,
+          });
+        } else {
+          const assignees = issue.assignees;
+          // Filter out issues that have assignees from our user list
+          if(!username.includes(issue.user.login)) {
+            blockedIssues.push({
+              assignee: issue.user.login,
+              number: issue.number,
+              repo: issue.repo,
+              owner: issue.owner,
+              title: issue.title,
+              htmlUrl: issue.html_url,
+              labels: labelsArray,
+            });
+          }
+        }
       }
     });
     return blockedIssues;
@@ -93,7 +120,8 @@ const getBlocks = (areInternalRepositories, repositories, blockingLabels, userna
         repo: blockedIssue.repo,
         issue_number: blockedIssue.number,
       });
-      return octokitInstance.paginate(options).then((events) => {
+      return octokitInstance.paginate(options)
+      .then((events) => {
         events.filter(event => event.event === 'labeled' && blockingLabels.includes(event.label.name)).reverse().forEach((event) => {
           updatedBlockedIssue.age = new Date() - new Date(event.created_at);
         });

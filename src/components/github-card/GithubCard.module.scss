@@ -39,6 +39,10 @@
       }
     }
 
+    .issue-age-alert {
+      color: #ad0000;
+    }
+
     .issue-actions {
       display: flex;
       justify-content: space-between;
@@ -46,6 +50,8 @@
         display: block;
         button { padding: 0.25rem 0.5rem; }
       }
+      .issue-badge { max-height: 23px; }
+      .issue-badge-not-ready { display: none; }
       .issue-link { width: 70%; }
     }
 

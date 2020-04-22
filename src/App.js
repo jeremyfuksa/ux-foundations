@@ -9,6 +9,7 @@ import LoadingOverlay from 'terra-overlay/lib/LoadingOverlay';
 import OverlayContainer from 'terra-overlay/lib/OverlayContainer';
 import IssueCards from './components/issue-cards/IssueCards';
 import GithubCard from './components/github-card/GithubCard';
+import StaticHeader from './components/static-header/StaticHeader';
 import styles from './App.module.scss';
 
 const React = getReactWithCX(styles);
@@ -45,7 +46,10 @@ const reviewLabels = [
 ];
 
 const inputLabels = [
-  'Needs design input'
+  'needs design input',
+  'Needs design input',
+  'Needs Design Input',
+  'UX Input Needed'
 ];
 
 const users = [
@@ -72,24 +76,27 @@ class App extends React.Component {
       this.populateCard(name, index);
     }
 
-    getBlocks(false, repos, blockLabels, 'none')
+    getBlocks(false, repos, blockLabels, users)
     .then((blocks) => {
+      blocks.sort((a, b) => (a.age < b.age) ? 1 : -1);
       this.setState({blocks: blocks});
     })
     .catch(() => {
       this.setState({blocks: undefined});
     });
 
-    getBlocks(false, repos, reviewLabels, 'none')
+    getBlocks(false, repos, reviewLabels, users)
     .then((reviews) => {
+      reviews.sort((a, b) => (a.age < b.age) ? 1 : -1);
       this.setState({reviews: reviews});
     })
     .catch(() => {
       this.setState({reviews: undefined});
     });
 
-    getBlocks(false, repos, inputLabels, 'none')
+    getBlocks(false, repos, inputLabels, users)
     .then((inputs) => {
+      inputs.sort((a, b) => (a.age < b.age) ? 1 : -1);
       this.setState({inputs: inputs});
     })
     .catch(() => {
@@ -147,11 +154,15 @@ class App extends React.Component {
 
   render () {
     if (this.state.isErrored) {
-      return <StatusView title="Error" variant="error" />;
+      return (
+        <div cx='app-error'>
+          <StatusView title="Error" variant="error" />
+        </div>
+      );
     }
     return (
       <div cx='app'>
-        <h1><img cx='ux-logo' src='UserExperience.png'></img><span>UX Foundations Terra Dashboard</span></h1>
+        <StaticHeader/>
         <OverlayContainer cx='container'>
           <LoadingOverlay isOpen={this.state.isLoading} isAnimated isRelativeToContainer />
           <div cx='app-content'>
