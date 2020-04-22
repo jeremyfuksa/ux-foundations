@@ -2,7 +2,7 @@
   "name": "ux-foundations",
   "version": "0.3.0",
   "private": true,
-  "homepage" : "http://jeremyfuksa.github.io/ux-foundations",
+  "homepage" : "http://jeremyfuksa.github.io/ux-foundations/build",
   "engines": {
     "node": "<11.*"
   },
