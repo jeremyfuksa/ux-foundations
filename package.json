@@ -2,7 +2,7 @@
   "name": "ux-foundations",
   "version": "0.3.0",
   "private": true,
-  "homepage" : "http://jeremyfuksa.github.io/ux-foundations/build",
+  "homepage" : "http://jeremyfuksa.github.io/ux-foundations/",
   "engines": {
     "node": "<11.*"
   },
@@ -95,7 +95,7 @@
     "test": "node scripts/test.js",
     "aggregate-translations": "tt-aggregate-translations -b ./ -d ./src/**/translations -d ./translations  -o ./node_modules/terra-i18n/node_modules -f es6",
     "deploy": "git push heroku master",
-    "gh-pages": "yarn build && cp build docs"
+    "gh-pages": "rm -r docs && yarn build && cp -R build docs"
   },
   "eslintConfig": {
     "extends": "react-app"
