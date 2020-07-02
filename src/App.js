@@ -179,7 +179,7 @@ class App extends React.Component {
     } else {
       cAssignedIssues = (
         <Tabs.Pane
-          label="Issues and PRs"
+          label="Assigned Issues and PRs"
           key="issuesAndPrs"
         >
         </Tabs.Pane>
@@ -197,7 +197,7 @@ class App extends React.Component {
     } else {
       cAudits = (
         <Tabs.Pane
-          label="UX Audits"
+          label="Terra Component UX Audits"
           key="uxAudits"
         >
           <Alert type="info">No audits have been defined.</Alert>
