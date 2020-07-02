@@ -231,7 +231,7 @@ class App extends React.Component {
         <div cx='app-content'>
           <OverlayContainer cx='container'>
             <LoadingOverlay isOpen={this.state.isLoading} isAnimated isRelativeToContainer />
-            <Tabs defaultActiveKey='unassignedIssuesAndPrs'>
+            <Tabs defaultActiveKey='issuesAndPrs'>
               {cAssignedIssues}
               {cUnassigned}
               {cAudits}
