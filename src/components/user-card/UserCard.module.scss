@@ -1,0 +1,40 @@
+:local {
+  .card {
+    margin: 1rem 0;
+
+    @media screen and (min-width: 48em) {
+      width: calc(33.3% - 0.75rem);
+      margin: 1rem 0 0;
+    }
+
+    .block-list {
+      margin-bottom: 1rem;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 1rem;
+      background-color: #f4f4f4;
+      border-bottom: 1px solid #c8cacb;
+    }
+
+    .issue-item {
+      padding: 0.5rem 1.25rem;
+  
+      &:last-child {
+        padding-bottom: 1rem;
+      }
+    }
+
+    .subsection {
+      margin-bottom: 0.5rem;
+    }
+
+    .user-name {
+      margin-left: 0.5rem;
+      font-size: 1.142857143rem;
+    }
+  }
+}

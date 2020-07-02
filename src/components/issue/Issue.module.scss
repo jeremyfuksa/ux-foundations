@@ -1,0 +1,83 @@
+:local {
+  .hidden {
+    display: none;
+  }
+
+  .is-bug {
+    fill: #ad0000;
+    width: auto;
+    max-width: var(--issue-is-bug-size, 0.714285714rem);
+    height: var(--issue-is-bug-size, 0.714285714rem);
+  }
+
+  .issue-age {
+    margin-left: auto;
+  }
+
+  .issue-age-alert {
+    color: #e80000;
+  }
+
+  .issue-blocked {
+    background-color: var(--issue-type-background-color, #ffc20b);
+    svg {
+      fill: var(--issue-type-svg-fill, #1c1f21);
+    }
+  }
+
+  .issue-details {
+    margin-bottom: 0.25rem;
+    padding-bottom: 0.25rem;
+    display: flex;
+    align-content: center;
+    font-size: var(--issue-detail-font-size, 0.857142857rem);
+    border-bottom: 1px solid #c8cacb;
+
+    span {
+      line-height: 1;
+    }
+  }
+
+  .issue-icon {
+    margin-right: 0.375rem;
+  }
+
+  .issue-metadata {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .issue-type {
+    display: flex;
+    align-items: center;
+    background-color: var(--issue-type-background-color, #909598);
+    border-radius: 50%;
+    width: var(--issue-type-size, 1.214285714rem);
+    height: var(--issue-type-size, 1.214285714rem);
+    // padding: var(--issue-type-padding, 0.142857143rem);
+    svg {
+      margin: auto;
+      fill: var(--issue-type-svg-fill, white);
+      width: auto;
+      max-width: var(--issue-detail-svg-size, 0.857142857rem);
+      height: var(--issue-detail-svg-size, 0.857142857rem);
+    }
+  }
+  .label-list {
+    display: flex;
+    align-items: flex-start;
+    max-width: 50%;
+    .label {
+      margin-left: 0.357142857rem;
+      padding: 0.142857143rem 0.285714286rem;
+      border-radius: 0.142857143rem;
+      font-size: 0.857142857rem;
+      background-color: #ebf6fd;
+    }
+  }
+
+  .ready-for-review {
+    background-color: var(--issue-type-background-color, #5FA62B);
+  }
+
+}

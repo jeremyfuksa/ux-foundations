@@ -1,7 +1,6 @@
-:local {
-  .app { padding-top: 0; }
 
-  .app-content {
+:global {
+  .issues {
     padding: var(--app-content-padding, 0 1rem 2rem);
     @media screen and (min-width: 48em) {
       display: flex;
@@ -9,7 +8,14 @@
       justify-content: space-between;
     }
   }
-  
+}
+
+:local {
+  .app {
+    display: flex;
+    flex-flow: column nowrap;
+    padding-top: 0; 
+  }
   .app-error {
     display: flex;
     align-content: center;
