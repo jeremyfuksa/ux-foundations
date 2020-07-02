@@ -27,8 +27,8 @@
     "fr-translations.js": "/ux-foundations/static/js/fr-translations.9eb44921.chunk.js",
     "fr-translations.js.map": "/ux-foundations/static/js/fr-translations.9eb44921.chunk.js.map",
     "main.css": "/ux-foundations/static/css/main.0bb8db97.chunk.css",
-    "main.js": "/ux-foundations/static/js/main.5436eab5.chunk.js",
-    "main.js.map": "/ux-foundations/static/js/main.5436eab5.chunk.js.map",
+    "main.js": "/ux-foundations/static/js/main.710d6af9.chunk.js",
+    "main.js.map": "/ux-foundations/static/js/main.710d6af9.chunk.js.map",
     "nl-BE-translations.js": "/ux-foundations/static/js/nl-BE-translations.4b7b33e2.chunk.js",
     "nl-BE-translations.js.map": "/ux-foundations/static/js/nl-BE-translations.4b7b33e2.chunk.js.map",
     "nl-translations.js": "/ux-foundations/static/js/nl-translations.b4aaeb8f.chunk.js",
@@ -81,7 +81,7 @@
     "static/js/38.6d4412a2.chunk.js": "/ux-foundations/static/js/38.6d4412a2.chunk.js",
     "static/js/38.6d4412a2.chunk.js.map": "/ux-foundations/static/js/38.6d4412a2.chunk.js.map",
     "index.html": "/ux-foundations/index.html",
-    "precache-manifest.1e93cd057bd5c9d18051da4625b9053b.js": "/ux-foundations/precache-manifest.1e93cd057bd5c9d18051da4625b9053b.js",
+    "precache-manifest.13d0a7c2c996f4a710909dd698f8c87a.js": "/ux-foundations/precache-manifest.13d0a7c2c996f4a710909dd698f8c87a.js",
     "service-worker.js": "/ux-foundations/service-worker.js",
     "static/css/21.fc0e99a7.chunk.css.map": "/ux-foundations/static/css/21.fc0e99a7.chunk.css.map",
     "static/css/main.0bb8db97.chunk.css.map": "/ux-foundations/static/css/main.0bb8db97.chunk.css.map",
@@ -95,6 +95,6 @@
     "static/css/21.fc0e99a7.chunk.css",
     "static/js/21.2a3416a7.chunk.js",
     "static/css/main.0bb8db97.chunk.css",
-    "static/js/main.5436eab5.chunk.js"
+    "static/js/main.710d6af9.chunk.js"
   ]
 }
