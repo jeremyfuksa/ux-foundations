@@ -9,7 +9,7 @@ const React = getReactWithCX(styles);
 class IssueList extends React.Component {
   constructor(props) {
     super(props);
-    props.issues.sort((a, b) => (a.title < b.title) ? -1 : 1);
+    props.issues.sort((a, b) => (a.age < b.age) ? 1 : -1);
     this.state = {};
   }
   
