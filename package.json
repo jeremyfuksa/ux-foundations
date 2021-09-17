@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@babel/core": "7.8.4",
-    "@octokit/rest": "^16.43.1",
+    "@octokit/rest": "^18.10.0",
     "@svgr/webpack": "4.3.3",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -57,7 +57,7 @@
     "react": "^16.12.0",
     "react-app-polyfill": "^1.0.6",
     "react-cx": "^0.1.12",
-    "react-dev-utils": "^10.1.0",
+    "react-dev-utils": "^11.0.4",
     "react-dom": "^16.12.0",
     "react-intl": "^2.8.0",
     "react-scripts": "^3.4.0",

@@ -3,45 +3,49 @@ import {Octokit} from '@octokit/rest';
 import flatten from 'lodash.flattendeep';
 
 const getOctoKitInstanceForExternalGithub = () => (
-  Octokit({
+  new Octokit({
     timeout: 0, // 0 means no request timeout
-    userAgent: 'octokit/rest.js v16.43.1',
-    auth: process.env.REACT_APP_EXT_GITHUB,
+    userAgent: 'octokit/rest.js v18.10.0',
+    auth: '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',
   })
 );
 
-const getOctoKitInstanceForInternalGithub = () => (
-  Octokit({
-    timeout: 0, // 0 means no request timeout
-    userAgent: 'octokit/rest.js v16.43.1',
-    baseUrl: 'https://github.cerner.com/api/v3',
-    auth: process.env.REACT_APP_INT_GITHUB,
-  })
-);
+// const getOctoKitInstanceForInternalGithub = () => (
+//   Octokit({
+//     timeout: 0, // 0 means no request timeout
+//     userAgent: 'octokit/rest.js v18.10.0',
+//     baseUrl: 'https://github.cerner.com/api/v3',
+//     auth: process.env.REACT_APP_INT_GITHUB,
+//   })
+// );
 
 const intersectionOfSets = (set1, set2) => new Set([...set1].filter(x => set2.has(x)));
 
 const getUser = (areInternalRepositories, username) => {
   let octokitInstance;
-  if (areInternalRepositories) {
-    octokitInstance = getOctoKitInstanceForInternalGithub();
-  } else {
-    octokitInstance = getOctoKitInstanceForExternalGithub();
-  }
-  return octokitInstance.users.getByUsername({username});
+  // Temporarily allow public api only
+  // if (areInternalRepositories) {
+  //   octokitInstance = getOctoKitInstanceForInternalGithub();
+  // } else {
+  //   octokitInstance = getOctoKitInstanceForExternalGithub();
+  // }
+  octokitInstance = getOctoKitInstanceForExternalGithub();
+  return octokitInstance.rest.users.getByUsername({username});
 }
 
 const getAudits = (areInternalRepositories, repositories) => {
   let octokitInstance;
-  if (areInternalRepositories) {
-    octokitInstance = getOctoKitInstanceForInternalGithub();
-  } else {
-    octokitInstance = getOctoKitInstanceForExternalGithub();
-  }
+  // Temporarily allow public api only
+  // if (areInternalRepositories) {
+  //   octokitInstance = getOctoKitInstanceForInternalGithub();
+  // } else {
+  //   octokitInstance = getOctoKitInstanceForExternalGithub();
+  // }
+  octokitInstance = getOctoKitInstanceForExternalGithub();
 
   return Promise.all(repositories.map((repositoryInfo) => {
     const [owner, repository] = repositoryInfo.split('/');
-    const options = octokitInstance.issues.listForRepo.endpoint({
+    const options = octokitInstance.rest.issues.listForRepo.endpoint({
       owner,
       repo: repository,
       state: 'open',
@@ -94,15 +98,17 @@ const getAudits = (areInternalRepositories, repositories) => {
 
 const getLabeledIssues = (areInternalRepositories, repositories, labels) => {
   let octokitInstance;
-  if (areInternalRepositories) {
-    octokitInstance = getOctoKitInstanceForInternalGithub();
-  } else {
-    octokitInstance = getOctoKitInstanceForExternalGithub();
-  }
+  // Temporarily allow public api only
+  // if (areInternalRepositories) {
+  //   octokitInstance = getOctoKitInstanceForInternalGithub();
+  // } else {
+  //   octokitInstance = getOctoKitInstanceForExternalGithub();
+  // }
+  octokitInstance = getOctoKitInstanceForExternalGithub();
 
   return Promise.all(repositories.map((repositoryInfo) => {
     const [owner, repository] = repositoryInfo.split('/');
-    const options = octokitInstance.issues.listForRepo.endpoint({
+    const options = octokitInstance.rest.issues.listForRepo.endpoint({
       owner,
       repo: repository,
       state: 'open',
@@ -161,7 +167,7 @@ const assignUser = (areInternalRepositories, number, owner, repo, username) => {
   } else {
     octokitInstance = getOctoKitInstanceForExternalGithub();
   }
-  return octokitInstance.issues.addAssignees({
+  return octokitInstance.rest.issues.addAssignees({
     owner,
     repo,
     number,
