@@ -4,4 +4,4 @@ yarn build
 cp -R build docs
 git add *
 git commit -m "GH Pages Build"
-git push origin master
+git push origin main
