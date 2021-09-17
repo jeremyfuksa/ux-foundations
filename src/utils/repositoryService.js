@@ -6,7 +6,7 @@ const getOctoKitInstanceForExternalGithub = () => (
   new Octokit({
     timeout: 0, // 0 means no request timeout
     userAgent: 'octokit/rest.js v18.10.0',
-    auth: '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',
+    auth: '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',
   })
 );
 
