@@ -2,11 +2,19 @@
 import {Octokit} from '@octokit/rest';
 import flatten from 'lodash.flattendeep';
 
+function b64DecodeUnicode(str) {
+  return decodeURIComponent(Array.prototype.map.call(atob(str), function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+  }).join(''))
+}
+
+console.log(b64DecodeUnicode(process.env.REACT_APP_GITHUB_PERSONAL_TOKEN));
+
 const getOctoKitInstanceForExternalGithub = () => (
   new Octokit({
     timeout: 0, // 0 means no request timeout
     userAgent: 'octokit/rest.js v18.10.0',
-    auth: process.env.REACT_APP_GITHUB_PERSONAL_TOKEN
+    auth: b64DecodeUnicode(process.env.REACT_APP_GITHUB_PERSONAL_TOKEN)
   })
 );
 
