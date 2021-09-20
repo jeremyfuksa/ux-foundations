@@ -8,7 +8,7 @@ function b64DecodeUnicode(str) {
   }).join(''))
 }
 
-console.log(b64DecodeUnicode(process.env.REACT_APP_GITHUB_PERSONAL_TOKEN));
+// console.log(b64DecodeUnicode(process.env.REACT_APP_GITHUB_PERSONAL_TOKEN));
 
 const getOctoKitInstanceForExternalGithub = () => (
   new Octokit({
