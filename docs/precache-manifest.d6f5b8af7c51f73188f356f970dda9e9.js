@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8c7957a9724ee4a7bcf5e58a2b0fc034",
+    "revision": "30d79d67248bc73f7209a64f58c439cd",
     "url": "/ux-foundations/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ux-foundations/static/css/21.48ad8f1b.chunk.css"
   },
   {
-    "revision": "dade08bd5c966d32fd2f",
+    "revision": "218f075b9fe74f88334f",
     "url": "/ux-foundations/static/css/main.1f5922ce.chunk.css"
   },
   {
@@ -140,8 +140,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ux-foundations/static/js/fr-translations.ff9367ff.chunk.js"
   },
   {
-    "revision": "dade08bd5c966d32fd2f",
-    "url": "/ux-foundations/static/js/main.1a7a408d.chunk.js"
+    "revision": "218f075b9fe74f88334f",
+    "url": "/ux-foundations/static/js/main.f0770b74.chunk.js"
   },
   {
     "revision": "d44fd805d8aa11f28c25",

@@ -163,7 +163,10 @@ class App extends React.Component {
     if (this.state.isErrored) {
       return (
         <div cx='app-error'>
-          <StatusView title="Error" variant="error" />
+          <StatusView
+            title="Error"
+            variant="error"
+          />
         </div>
       );
     }
